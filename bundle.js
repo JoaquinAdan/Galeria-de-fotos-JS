@@ -50,8 +50,8 @@ function mostrarImagen(e) {
 
     //boton para cerrar la imagen
     const cerrarImagen = document.createElement('P');
-    cerrarImagen.textContent = 'X';
-    cerrarImagen.classList.add('btn-cerrar');
+    //cerrarImagen.textContent = 'X';
+    //cerrarImagen.classList.add('btn-cerrar');
 
 	//guardar
 	const guardar = document.createElement('A');
