@@ -5,17 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="darkmode.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="media.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
-    <header>
-        <!-- Parte de Daniel -->
+    <header class="header">
+        <nav class="nav">
+            <div class="rigth-nav-container">
+                <a href="#top">
+                    <img src="https://lh3.googleusercontent.com/a-/AOh14Gi7PX_TEibANXj2_4mblPSCS1fEe6dJkdz3n08f=s288-p-rw-no" alt="">
+                </a>
+                 <div class="ul-galerie-container">
+                    <p class="albums">albums</p>
+                    <span class="material-symbols-outlined" id="arrowAlbum">keyboard_arrow_down</span>
+                    <ul class="ul-galerie" id="table">
+                        <li>naruto</li>
+                        <li>one pice</li>
+                        <li>evengelion</li>
+                        <li>kimetsu</li>
+                    </div>
+            </div>
+            <div class="left-nav-container">
+                <span>
+                <img src="build/img/dark-mode.svg" alt="modo oscuro" class="dark-mode-boton">
+                </span>
+                <span class="material-symbols-outlined search">
+                    search
+                </span>
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+            </div>
+        </nav>
     </header>
+    <main>
+        <section class="main-img-container-section" id="top">
+            <div class="carrousel">
+                <div class="atras botones" onmousedown="mouseDown()" onmouseup="mouseUp()">
+                    &#60
+                </div>
+                <div class="adelante botones" onmousedown="mouseDown()" onmouseup="mouseUp()">
+                    &#62
+                </div>
+                <div class="imagenesCarrousel">
+                </div>
+                
+                <!-- <span class="material-symbols-outlined atras botones">keyboard_arrow_left</span>
+                <span class="material-symbols-outlined adelante botones">keyboard_arrow_right</span> -->
+            </div>
 
-    <section class="galeria contenedor">
-        <ul class="galeria-imagenes"></ul>
-    </section>
+        </section>
+        <section class="galeria contenedorImg">
+            <ul class="galeria-imagenes"></ul>
+        </section>
+    </main>
 
-    <script src="/build/js/bundle.min.js"></script>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="bundle.js"></script>
 </body>
 </html>
+
+
