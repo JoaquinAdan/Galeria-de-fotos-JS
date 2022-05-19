@@ -99,6 +99,24 @@ function crearCarrousel() {
     function mouseUp1() {
         stop()
     }
+    document.querySelector(".atras").addEventListener("touchstart", touchStart)
+    document.querySelector(".atras").addEventListener("touchend", touchEnd)
+   
+    document.querySelector(".adelante").addEventListener("touchstart", touchStart1)
+    document.querySelector(".adelante").addEventListener("touchend", touchEnd1)
+   
+    function touchStart() {
+        startAtras()
+    }
+    function touchEnd() {
+        stop()
+    }
+    function touchStart1() {
+        startAdelante()
+    }
+    function touchEnd1() {
+        stop()
+    }
     // carrousel.addEventListener("mouseover",() => {
     //     stop()
     // })
