@@ -7,6 +7,7 @@ arrowAlbum.onclick=() => {
     table.classList.toggle('active');
 }
 
+<<<<<<< HEAD
 // adan
 document.addEventListener('DOMContentLoaded', function() {
     crearGaleria();
@@ -20,6 +21,17 @@ function crearGaleria() {
 	for (let i = 1; i <= 17; i++) {
 		const imagen = document.createElement("IMG");
         imagen.setAttribute('loading', 'lazy')
+=======
+
+// adan
+document.addEventListener('DOMContentLoaded', function() {
+    crearGaleria();
+});
+function crearGaleria() {
+	const galeria = document.querySelector(".galeria-imagenes");
+	for (let i = 1; i <= 15; i++) {
+		const imagen = document.createElement("IMG");
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
 		imagen.src = `build/img/${i}.webp`;
 		imagen.dataset.imagenId = i;
 
@@ -31,6 +43,7 @@ function crearGaleria() {
 		galeria.appendChild(lista);
 	}
 }
+<<<<<<< HEAD
 function crearCarrousel() {
     const carrouselImagenes = document.querySelector(".imagenesCarrousel");
 	for (let i = 1; i <= 17; i++) {
@@ -126,18 +139,28 @@ function mostrarImagen(e) {
     // Carrusel
    
 
+=======
+
+function mostrarImagen(e) {
+    const id = parseInt( e.target.dataset.imagenId);
+
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
 	// Div hijo
 	const pieFoto = document.createElement('DIV');
 	pieFoto.classList.add('pieFoto');
 	
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
     //generar la imagen
     const imagen  = document.createElement('IMG');
     imagen.setAttribute('id','div');
     imagen.classList.add('img-tamaño')
     imagen.src = `build/img/${id}.webp`;
     console.log(imagen.id)
+<<<<<<< HEAD
     
     //DIV OVERLAY
     const fondo = document.createElement('DIV');
@@ -155,6 +178,19 @@ function mostrarImagen(e) {
     const cerrarImagen = document.createElement('P');
     // cerrarImagen.textContent = 'X';
     // cerrarImagen.classList.add('btn-cerrar');
+=======
+
+    //DIV OVERLAY
+    const overlay = document.createElement ('DIV');
+    overlay.appendChild(imagen);
+    overlay.appendChild(pieFoto);
+    overlay.classList.add('overlay');
+
+    //boton para cerrar la imagen
+    const cerrarImagen = document.createElement('P');
+    //cerrarImagen.textContent = 'X';
+    //cerrarImagen.classList.add('btn-cerrar');
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
 
 	//guardar
 	const guardar = document.createElement('A');
@@ -184,13 +220,19 @@ function mostrarImagen(e) {
     download.appendChild(downloadImg)
 
     //cuando se da click cerrar la imagen
+<<<<<<< HEAD
     fondo.onclick = function() {
         overlay.remove();
         fondo.remove();
+=======
+    overlay.onclick = function() {
+        overlay.remove();
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
         body.classList.remove('fijar-body');
     }
 
     // Cuando se presiona, se cierra la imagen
+<<<<<<< HEAD
     // cerrarImagen.onclick = function() {
     //     overlay.remove();
     //     body.classList.remove('fijar-body');
@@ -198,10 +240,20 @@ function mostrarImagen(e) {
     overlay.appendChild(cerrarImagen);
 	console.log(cerrarImagen.textContent)
     //contenido para fondo
+=======
+    cerrarImagen.onclick = function() {
+        overlay.remove();
+        body.classList.remove('fijar-body');
+    }
+    overlay.appendChild(cerrarImagen);
+	console.log(cerrarImagen.textContent)
+
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
   
     //Mostrar en el HTML
     const body = document.querySelector('body');
     body.appendChild(overlay);
+<<<<<<< HEAD
     body.appendChild(fondo);
     body.classList.add('fijar-body');
 }
@@ -250,3 +302,8 @@ function navegacionFija() {
 }
 
 
+=======
+    body.classList.add('fijar-body');
+    
+}
+>>>>>>> 1788090ba907f4e37dd49eaee1859140d6683a8c
