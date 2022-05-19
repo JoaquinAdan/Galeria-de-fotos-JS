@@ -9,28 +9,28 @@ arrowAlbum.onclick=() => {
 
 // adan
 document.addEventListener('DOMContentLoaded', function() {
-    crearGaleria();
+    // crearGaleria();
     darkMode();
     navegacionFija();
     crearCarrousel();
 });
 
-function crearGaleria() {
-	const galeria = document.querySelector(".galeria-imagenes");
-	for (let i = 1; i <= 17; i++) {
-		const imagen = document.createElement("IMG");
-        imagen.setAttribute('loading', 'lazy')
-		imagen.src = `build/img/${i}.webp`;
-		imagen.dataset.imagenId = i;
+// function crearGaleria() {
+// 	const galeria = document.querySelector(".galeria-imagenes");
+// 	for (let i = 1; i <= 17; i++) {
+// 		const imagen = document.createElement("IMG");
+//         imagen.setAttribute('loading', 'lazy')
+// 		imagen.src = `build/img/${i}.webp`;
+// 		imagen.dataset.imagenId = i;
 
-		// añadir funcion mostrar imagen
-		imagen.onclick = mostrarImagen;
+// 		// añadir funcion mostrar imagen
+// 		imagen.onclick = mostrarImagen;
 
-		const lista = document.createElement("LI");
-		lista.appendChild(imagen);
-		galeria.appendChild(lista);
-	}
-}
+// 		const lista = document.createElement("LI");
+// 		lista.appendChild(imagen);
+// 		galeria.appendChild(lista);
+// 	}
+// }
 function crearCarrousel() {
     const carrouselImagenes = document.querySelector(".imagenesCarrousel");
 	for (let i = 1; i <= 17; i++) {
@@ -38,10 +38,10 @@ function crearCarrousel() {
         imagen.setAttribute('loading', 'lazy')
         imagen.classList.add('carrouselImg')
 		imagen.src = `build/img/${i}.webp`;
-		imagen.dataset.imagenId = i;
+		// imagen.dataset.imagenId = i;
 
-		// añadir funcion mostrar imagen
-		imagen.onclick = mostrarImagen;
+		// // añadir funcion mostrar imagen
+		// imagen.onclick = mostrarImagen;
         
         const listado = document.createElement("div");
         listado.classList.add('imagenCarrousel')
@@ -132,6 +132,63 @@ function crearCarrousel() {
 
 }
 
+const requestTarget = document.querySelector('#request-target');
+const itemContainer = document.querySelector('#item-container');
+const intersectionOptions = {
+    threshold: 1
+}
+
+let apiUrl = 'https://rickandmortyapi.com/api/character';
+let loading = false;
+
+const onIntersect = ([entry]) => {
+    if(apiUrl && !loading && entry.isIntersecting)
+        makeRequest();
+}
+
+const makeRequest = () => {
+    loading = true;
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            cleanUp(data.info.next);
+            renderItems(data.results);
+        });
+}
+
+const cleanUp = nextPage => {
+    apiUrl = nextPage;
+    loading = false;
+}
+
+const renderItems = results => {
+    results.forEach(item => {
+        itemContainer.appendChild(createItem(item));
+    });
+}
+
+const createItem = item => {
+    const newItem = document.createElement('div');
+    newItem.classList.add('item');
+    newItem.innerHTML = (
+        `
+            <img class="char-img" src=${item.image} />
+        `
+       
+        // `
+        // <div class="char-id">${item.id}</div>
+        // <div class="char-name">${item.name}</div>
+        // <img class="char-img" src=${item.image} />
+        // <div class="char-species">${item.species}</div>
+        // `
+    );
+    newItem.onclick = mostrarImagen; 
+    return newItem;
+}
+let observer = new IntersectionObserver(onIntersect, intersectionOptions);
+
+observer.observe(requestTarget);
+
 //Mostrar imagenes
 function mostrarImagen(e) {
     const id = parseInt( e.target.dataset.imagenId);
@@ -149,7 +206,7 @@ function mostrarImagen(e) {
     const imagen  = document.createElement('IMG');
     imagen.setAttribute('id','div');
     imagen.classList.add('img-tamaño')
-    imagen.src = `build/img/${id}.webp`;
+    imagen.src = `${id}`;
     console.log(imagen.id)
     
     //DIV OVERLAY
