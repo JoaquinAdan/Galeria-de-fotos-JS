@@ -213,6 +213,7 @@ img.icon  {
     background-color: #fff;
     width: 97%;
     margin: 0 auto;
+    z-index: 101;
 }
 .header.fijo {
     position: fixed;
@@ -249,13 +250,46 @@ img.icon  {
     transform: scale(1.1,1.1);
 }
 .atras {
-    margin-left: 2rem;
+    margin-left: 7rem;
     top: calc(34% - 7rem);
 }
 .adelante {
-    margin-left: 95%;
+    margin-left: 92%;
     margin-right: 2rem;
     top: calc(34% - 7rem);
+}
+@media (max-width: 1200px) {
+    .atras {
+        margin-left: 5rem;
+        top: calc(34% - 7rem);
+    }
+    .adelante {
+        margin-left: 88%;
+        margin-right: 2rem;
+        top: calc(34% - 7rem);
+    }
+}
+@media (max-width: 768px) {
+    .atras {
+        margin-left: 4rem;
+        top: calc(26% - 7rem);
+    }
+    .adelante {
+        margin-left: 90%;
+        margin-right: 2rem;
+        top: calc(26% - 7rem);
+    }
+}
+@media (max-width: 480px) {
+    .atras {
+        margin-left: 2rem;
+        top: calc(20% - 7rem);
+    }
+    .adelante {
+        margin-left: 88%;
+        margin-right: 2rem;
+        top: calc(20% - 7rem);
+    }
 }
 .carrouselImg {
     border-radius:0;
@@ -276,6 +310,7 @@ img.icon  {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    width: 95%;
     margin: 0 auto;
     align-items: center;
     justify-content: space-between;
