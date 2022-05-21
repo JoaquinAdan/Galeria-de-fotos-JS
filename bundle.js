@@ -1,36 +1,136 @@
 // daniel
-const arrowAlbum = document.getElementById('arrowAlbum');
 
-arrowAlbum.onclick=() => {
-    const table = document.getElementById('table');
+// const arrowAlbum = document.getElementById('arrowAlbum');
 
-    table.classList.toggle('active');
+// arrowAlbum.onclick=() => {
+//     const table = document.getElementById('table');
+
+//     table.classList.toggle('active');
+// }
+
+//contenedores
+const AllAbumContainer = document.querySelector('.album-save-galerie');
+const AllAlbumsUl = document.querySelector('.All-albums-conteiner');
+
+//eventos
+//const crearAlbum = document.getElementById('crearAlbum'); //aca
+const arrowImage = document.querySelector('.arrowImage');
+const imagesContainer = document.querySelector('.album-img');
+const saveImage = document.querySelector('.Album-container-img');
+let bookmark = document.querySelector('.bookmark');
+const html = document.querySelector('.html');
+
+//objeto de imagens
+let objetosIMG = [];
+let =  contador = 1;
+
+//html con js
+// let albumnname = document.createElement('div');
+// let albumInput = document.createElement('input');
+// let submitebtn = document.createElement('div');
+// submitebtn.textContent = 'crear album'
+
+
+// albumnname.className = 'albumn-name';
+// albumInput.className = 'album-input';
+// submitebtn.className = 'submite-btn';
+
+
+// AllAbumContainer.appendChild(albumnname);
+// albumnname.appendChild(albumInput);
+// albumnname.appendChild(submitebtn);
+
+// mis funciones
+createEventLisetener();
+function createEventLisetener() {
+    crearAlbum.addEventListener('click', activeDiv)
+}
+
+function activeDiv() {
+    if (contador == 0) {
+        albumnname.style.display = 'none';
+        contador = 1;
+    }else{
+        albumnname.style.display = 'block'
+        contador = 0;
+    }
+    
+}
+
+arrowImage.onclick=()=>{
+    if (contador == 0) {
+        imagesContainer.style.display = 'none';
+        contador = 1;
+    }else {
+        imagesContainer.style.display = 'block'
+        contador = 0;
+    }
+}
+
+
+function guardarelementosimg(overlayHijo, guardar) {
+    overlayHijo.appendChild(AllAbumContainer);
+    guardar.onclick=()=> {
+        if (contador == 0) {
+            AllAbumContainer.style.display = 'none';
+            contador = 1;
+        }else {
+            AllAbumContainer.style.display = 'grid'
+            contador = 0;
+        }
+    }
+}
+
+
+function gurdarImgAlbum(imagen, overlay){
+    let liContainerImg = document.createElement('li');
+    liContainerImg.className = 'li-Container-Img';
+
+    let btnborrar = document.createElement('span');
+    btnborrar.textContent = 'delete';
+    btnborrar.className = "material-symbols-outlined";
+
+    borrarImagenes(btnborrar, objetosIMG, liContainerImg)
+    bookmark.onclick=()=>{
+        imagesContainer.appendChild(liContainerImg);
+        liContainerImg.appendChild(imagen);
+        liContainerImg.appendChild(btnborrar);
+        overlay.style.display = 'none'
+        AllAbumContainer.style.display = 'none';
+    }
+}
+
+function borrarImagenes(btnborrar, objetosIMG, liContainerImg) {
+    btnborrar.onclick=()=>{
+        liContainerImg.style.display = 'none'
+    }
 }
 
 // adan
 document.addEventListener('DOMContentLoaded', function() {
-    // crearGaleria();
+    crearGaleria();
     darkMode();
     navegacionFija();
     crearCarrousel();
 });
 
-// function crearGaleria() {
-// 	const galeria = document.querySelector(".galeria-imagenes");
-// 	for (let i = 1; i <= 17; i++) {
-// 		const imagen = document.createElement("IMG");
-//         imagen.setAttribute('loading', 'lazy')
-// 		imagen.src = `build/img/${i}.webp`;
-// 		imagen.dataset.imagenId = i;
+function crearGaleria() {
+	const galeria = document.querySelector(".galeria-imagenes");
+	for (let i = 1; i <= 17; i++) {
+		const imagen = document.createElement("IMG");
+        imagen.setAttribute('loading', 'lazy')
+		imagen.src = `build/img/${i}.webp`;
+		imagen.dataset.imagenId = i;
 
-// 		// añadir funcion mostrar imagen
-// 		imagen.onclick = mostrarImagen;
+		// añadir funcion mostrar imagen
+		imagen.onclick = mostrarImagen;
 
-// 		const lista = document.createElement("LI");
-// 		lista.appendChild(imagen);
-// 		galeria.appendChild(lista);
-// 	}
-// }
+		const lista = document.createElement("LI");
+		lista.appendChild(imagen);
+		galeria.appendChild(lista);
+
+	}
+}
 function crearCarrousel() {
     const carrouselImagenes = document.querySelector(".imagenesCarrousel");
 	for (let i = 1; i <= 17; i++) {
@@ -38,15 +138,16 @@ function crearCarrousel() {
         imagen.setAttribute('loading', 'lazy')
         imagen.classList.add('carrouselImg')
 		imagen.src = `build/img/${i}.webp`;
-		// imagen.dataset.imagenId = i;
+		imagen.dataset.imagenId = i;
 
-		// // añadir funcion mostrar imagen
-		// imagen.onclick = mostrarImagen;
+		// añadir funcion mostrar imagen
+		imagen.onclick = mostrarImagen;
         
         const listado = document.createElement("div");
         listado.classList.add('imagenCarrousel')
         listado.appendChild(imagen)
         carrouselImagenes.appendChild(listado)
+
 	}
     const carrousel = document.querySelector(".imagenesCarrousel");
     const atras = document.querySelector(".atras")
@@ -99,24 +200,6 @@ function crearCarrousel() {
     function mouseUp1() {
         stop()
     }
-    document.querySelector(".atras").addEventListener("touchstart", touchStart)
-    document.querySelector(".atras").addEventListener("touchend", touchEnd)
-   
-    document.querySelector(".adelante").addEventListener("touchstart", touchStart1)
-    document.querySelector(".adelante").addEventListener("touchend", touchEnd1)
-   
-    function touchStart() {
-        startAtras()
-    }
-    function touchEnd() {
-        stop()
-    }
-    function touchStart1() {
-        startAdelante()
-    }
-    function touchEnd1() {
-        stop()
-    }
     // carrousel.addEventListener("mouseover",() => {
     //     stop()
     // })
@@ -131,63 +214,6 @@ function crearCarrousel() {
     start();
 
 }
-
-const requestTarget = document.querySelector('#request-target');
-const itemContainer = document.querySelector('#item-container');
-const intersectionOptions = {
-    threshold: 1
-}
-
-let apiUrl = 'https://rickandmortyapi.com/api/character';
-let loading = false;
-
-const onIntersect = ([entry]) => {
-    if(apiUrl && !loading && entry.isIntersecting)
-        makeRequest();
-}
-
-const makeRequest = () => {
-    loading = true;
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            cleanUp(data.info.next);
-            renderItems(data.results);
-        });
-}
-
-const cleanUp = nextPage => {
-    apiUrl = nextPage;
-    loading = false;
-}
-
-const renderItems = results => {
-    results.forEach(item => {
-        itemContainer.appendChild(createItem(item));
-    });
-}
-
-const createItem = item => {
-    const newItem = document.createElement('div');
-    newItem.classList.add('item');
-    newItem.innerHTML = (
-        `
-            <img class="char-img" src=${item.image} />
-        `
-       
-        // `
-        // <div class="char-id">${item.id}</div>
-        // <div class="char-name">${item.name}</div>
-        // <img class="char-img" src=${item.image} />
-        // <div class="char-species">${item.species}</div>
-        // `
-    );
-    newItem.onclick = mostrarImagen; 
-    return newItem;
-}
-let observer = new IntersectionObserver(onIntersect, intersectionOptions);
-
-observer.observe(requestTarget);
 
 //Mostrar imagenes
 function mostrarImagen(e) {
@@ -206,7 +232,7 @@ function mostrarImagen(e) {
     const imagen  = document.createElement('IMG');
     imagen.setAttribute('id','div');
     imagen.classList.add('img-tamaño')
-    imagen.src = `${id}`;
+    imagen.src = `build/img/${id}.webp`;
     console.log(imagen.id)
     
     //DIV OVERLAY
@@ -228,10 +254,11 @@ function mostrarImagen(e) {
 
 	//guardar
 	const guardar = document.createElement('A');
-    guardar.setAttribute("href", "#");
+    //guardar.setAttribute("href", '#');
     guardar.textContent = "Guardar";
     guardar.classList.add('boton', 'grid-guardar');
     pieFoto.appendChild(guardar)
+    guardar.style.cursor = 'pointer';
 	
     //share
     const share = document.createElement('A');
@@ -274,6 +301,10 @@ function mostrarImagen(e) {
     body.appendChild(overlay);
     body.appendChild(fondo);
     body.classList.add('fijar-body');
+
+    //funcion daniel
+    guardarelementosimg(overlayHijo, guardar);
+    gurdarImgAlbum(imagen, overlay); 
 }
 
 // Dark mode
@@ -318,5 +349,3 @@ function navegacionFija() {
     //Elemento a observar
     observer.observe(document.querySelector('.main-img-container-section'));
 }
-
-
